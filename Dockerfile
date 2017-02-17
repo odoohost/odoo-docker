@@ -49,7 +49,12 @@ COPY ./odoo.conf /etc/odoo/
 RUN chmod 755 /startup.sh
 RUN chmod 777 /etc/odoo/odoo.conf
 
-VOLUME ["/usr/lib/python2.7/dist-packages/odoo/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql/data"]
+RUN mkdir -p /home/extra-addons \
+        && chown -R root /home/extra-addons
+RUN mkdir -p /home/backups \
+        && chown -R root /home/backups
+        
+VOLUME ["/home/extra-addons","/home/backups","/usr/lib/python2.7/dist-packages/odoo/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql/data"]
 
 EXPOSE 8069 8071 8072
 
