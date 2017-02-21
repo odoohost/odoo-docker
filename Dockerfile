@@ -58,4 +58,7 @@ VOLUME ["/mnt/extra-addons","/mnt/backups","/usr/lib/python2.7/dist-packages/odo
 
 EXPOSE 8069 8071 8072
 
+# Set the default config file
+ENV ODOO_RC /etc/odoo/odoo.conf
+
 ENTRYPOINT ["/bin/bash","/startup.sh"]
