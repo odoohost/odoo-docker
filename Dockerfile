@@ -34,6 +34,7 @@ RUN set -x; \
         && dpkg --force-depends -i wkhtmltox.deb \
         && apt-get update \
         && apt-get -y install -f --no-install-recommends
+COPY ./simsun.ttc /usr/share/fonts
 
 #Install Odoo
 RUN set -x; \
