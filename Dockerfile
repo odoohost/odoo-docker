@@ -12,6 +12,8 @@ RUN set -x; \
 USER postgres
 RUN /etc/init.d/postgresql start  && psql --command "CREATE USER root WITH SUPERUSER CREATEDB REPLICATION;"
 USER root
+ENV PATH /usr/lib/postgresql/9.5/bin:$PATH
+ENV PGDATA /var/lib/postgresql/data
 
 # Install some deps, lessc and less-plugin-clean-css
 # Cannot install wkhtmltopdf,default in ubuntu without header&footer
