@@ -12,7 +12,6 @@ RUN set -x; \
 USER postgres
 RUN /etc/init.d/postgresql start  && psql --command "CREATE USER root WITH SUPERUSER CREATEDB REPLICATION;"
 USER root
-ENV PATH /usr/lib/postgresql/9.5/bin:$PATH
 ENV PGDATA /var/lib/postgresql/data
 
 # Install some deps, lessc and less-plugin-clean-css
@@ -59,7 +58,7 @@ RUN mkdir -p /mnt/extra-addons \
 RUN mkdir -p /mnt/backups \
         && chown -R odoo /mnt/backups
         
-VOLUME ["/mnt/extra-addons","/mnt/backups","/usr/lib/python2.7/dist-packages/odoo/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql/data"]
+VOLUME ["/mnt/extra-addons","/mnt/backups","/usr/lib/python2.7/dist-packages/odoo/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql"]
 
 EXPOSE 8069 8071 8072
 
