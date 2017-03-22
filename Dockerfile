@@ -52,15 +52,16 @@ COPY ./odoo.conf /etc/odoo/
 ENV ODOO_RC /etc/odoo/odoo.conf
 
 # Modify group and user odoo id for interacting with host
-RUN groupmod -g 1000 odoo && usermod -u 1000 -g odoo odoo
-RUN mkdir -p /mnt/extra-addons \
-        && chown -R odoo /mnt/extra-addons
-RUN mkdir -p /mnt/backups \
-        && chown -R odoo /mnt/backups
+#RUN groupmod -g 1000 odoo && usermod -u 1000 -g odoo odoo
+#RUN mkdir -p /extra-addons \
+#        && chown -R odoo /extra-addons
+#RUN mkdir -p /data \
+#        && chown -R odoo /data
+RUN mkdir /extra-addons && mkdir /data
         
-VOLUME ["/mnt/extra-addons","/mnt/backups","/usr/lib/python2.7/dist-packages/odoo/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql"]
+VOLUME ["/extra-addons","/data","/usr/lib/python2.7/dist-packages/odoo/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql"]
 
-EXPOSE 8069 8071 8072
+EXPOSE 8069
 
 # Copy startup script
 COPY ./startup.sh /
