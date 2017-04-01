@@ -51,12 +51,6 @@ COPY ./odoo.conf /etc/odoo/
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
 
-# Modify group and user odoo id for interacting with host
-#RUN groupmod -g 1000 odoo && usermod -u 1000 -g odoo odoo
-#RUN mkdir -p /extra-addons \
-#        && chown -R odoo /extra-addons
-#RUN mkdir -p /data \
-#        && chown -R odoo /data
 RUN mkdir /extra-addons && mkdir /data && ln -s /usr/lib/python2.7/dist-packages/odoo/addons /
         
 VOLUME ["/extra-addons","/data","/addons","/var/lib/odoo","/etc/odoo","/var/lib/postgresql"]
