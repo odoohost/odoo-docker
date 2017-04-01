@@ -51,7 +51,7 @@ COPY ./odoo.conf /etc/odoo/
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
 
-RUN mkdir /extra-addons && mkdir /data && ln -s /usr/lib/python2.7/dist-packages/odoo/addons /
+#RUN mkdir /extra-addons && mkdir /data
 
 ENV HOST_BASE_DIR /odoo
 ENV INSTANCE_NAME odoo
@@ -59,7 +59,7 @@ VOLUME ["${HOST_BASE_DIR}/addons:/addons",
         "${HOST_BASE_DIR}/customers/${INSTANCE_NAME}/var/lib/odoo:/var/lib/odoo",
         "${HOST_BASE_DIR}/customers/${INSTANCE_NAME}/etc/odoo:/etc/odoo",
         "${HOST_BASE_DIR}/customers/${INSTANCE_NAME}/var/lib/postgresql:/var/lib/postgresql",
-        "${HOST_BASE_DIR}/customers/${INSTANCE_NAME}/extra-addons:extra-addons",
+        "${HOST_BASE_DIR}/customers/${INSTANCE_NAME}/extra-addons:/extra-addons",
         "${HOST_BASE_DIR}/customers/${INSTANCE_NAME}/data:/data"]
 
 EXPOSE 8069
